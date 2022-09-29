@@ -1,4 +1,4 @@
-import {Application,Container,Text,Sprite,Texture} from 'pixi.js'
+import {Container,Text,Sprite,Texture} from 'pixi.js'
 import { createRenderer } from 'vue';
 export const renderer=createRenderer<Container,Container>({
     createElement(type) {
@@ -21,8 +21,10 @@ export const renderer=createRenderer<Container,Container>({
             case 'texture':
                     (el as Sprite).texture=Texture.from(nextVal)
                 break;
-        
+            case "onClick":
+                el.on("pointertap", nextVal);
             default:
+                (el as any)[key] = nextVal;
                 break;
         }
     }, 

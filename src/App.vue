@@ -1,21 +1,18 @@
-<script setup lang="ts">
-import logo from './assets/vue.svg'
-</script>
 
+<script setup lang="ts">
+  import Plane from './components/Plane.vue'
+  import Bullet from './components/Bullet.vue';
+import { reactive } from 'vue';
+import { setupPlane } from './game/Plane';
+  let data = reactive({x:0,y:0})
+  setupPlane(data)
+</script>
 <template>
-  <Container><Sprite :texture="logo"></Sprite></Container>
+  <Container>
+    <Plane></Plane>
+    <Bullet></Bullet>
+  </Container>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>

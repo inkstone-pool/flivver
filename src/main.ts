@@ -1,6 +1,8 @@
-
+import './style.css'
 import App from './App.vue'
-import {renderer} from './runtime-pixi';
 import {game} from './game';
+import {renderer} from './runtime-pixi';
+
+
 
 renderer.createApp(App).mount(game.stage)

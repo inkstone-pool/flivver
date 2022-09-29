@@ -8,7 +8,7 @@
 - vitest
 - pixi.js
 - custom renderer
-- pina
+- pinia
 # start
     npm i
     pnpm dev

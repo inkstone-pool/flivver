@@ -29,6 +29,9 @@ function mainTicker(plane:Plane,enemyPlanes:EnemyPlane[]){
         runEnemyPlanes(enemyPlanes)
         fighting(plane,enemyPlanes)
     })
+    setInterval(()=>{
+        plane.attack()
+    },500)
     
 }
 

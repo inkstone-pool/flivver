@@ -18,8 +18,8 @@ const {plane}=defineProps({
   }
 })
 window.addEventListener('keydown',(e)=>{
- 
   switch (e.code) {
+ 
     case 'ArrowDown':
       plane.moveDown()
       break;
@@ -31,9 +31,6 @@ window.addEventListener('keydown',(e)=>{
       break;
     case 'ArrowRight':
       plane.moveRight()
-      break;
-    case 'Space':
-      plane.attack()
       break;
     default:
       break;

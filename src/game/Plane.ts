@@ -1,6 +1,7 @@
 import { ReactiveEffect } from "vue"
-import Bullet from "./Bullet"
+import {Bullet} from "./Bullet"
 export interface Plane{
+    bullets:Bullet[]
     x:number,
     y:number,
     moveDown:()=>void

@@ -1,6 +1,6 @@
 import { setupPlane } from "./Plane";
 import {describe,expect,it} from 'vitest'
-import Bullet from "./Bullet";
+import {Bullet} from "./Bullet";
 const  defaultOptions={
     x:0,
     y:0,

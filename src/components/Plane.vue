@@ -1,6 +1,6 @@
 <template>
-    <Container>
-      <Sprite :texture="bulletImg" :x="plane.x" :y="plane.y">
+    <Container :x="plane.x" :y="plane.y">
+      <Sprite :texture="bulletImg" >
       </Sprite>
     </Container>
   </template>

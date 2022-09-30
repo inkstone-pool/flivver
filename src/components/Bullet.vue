@@ -1,11 +1,11 @@
 <template>
-  <Container><Sprite :texture="bulletImg" :x="bullet.x" :y="bullet.y"></Sprite></Container>
+  <Container :x="bullet.x" :y="bullet.y"><Sprite :texture="bulletImg" ></Sprite></Container>
 </template>
 
 <script setup lang="ts">
 import { PropType } from 'vue';
 import bulletImg from '../assets/images/bullet.png'
-import Bullet  from '../game/Bullet';
+import {Bullet}  from '../game';
 
 const {bullet}=defineProps({
   bullet:{

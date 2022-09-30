@@ -6,11 +6,17 @@
   </template>
   
   <script setup lang="ts">
-import { reactive } from 'vue';
+import { PropType } from 'vue';
 import bulletImg from '../assets/images/me1.png'
-import { setupPlane } from '../game';
+import { Plane } from '../game';
 
-const plane= setupPlane(reactive({}))
+const {plane}=defineProps({
+  plane:{
+    type:Object as PropType<Plane>,
+    required:true
+
+  }
+})
 window.addEventListener('keydown',(e)=>{
  
   switch (e.code) {
@@ -25,6 +31,9 @@ window.addEventListener('keydown',(e)=>{
       break;
     case 'ArrowRight':
       plane.moveRight()
+      break;
+    case 'Space':
+      plane.attack()
       break;
     default:
       break;

@@ -1,4 +1,6 @@
 import { Application } from "pixi.js"
+import { P } from "vitest/dist/global-e98f203b"
+import { Plane, setupPlane } from "./Plane"
 
 export const game=new Application({
     width:700,
@@ -6,6 +8,17 @@ export const game=new Application({
 })
 export *from './Plane'
 document.body.appendChild(game.view)
-// export function initGame(plane,bullets){
-//     const plane =setupPlane(plane,{})
-// }
+export function initGame(_plane: any,bullets: any[]){
+     const plane =setupPlane(_plane,bullets,{x:300,y:600})
+     mainTicker(plane)
+     return {
+        plane,
+        bullets,
+     }
+}
+function mainTicker(plane:Plane){
+    game.ticker.add(()=>{
+        plane.run()
+    })
+    
+}

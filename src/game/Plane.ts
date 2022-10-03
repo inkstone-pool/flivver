@@ -59,5 +59,8 @@ function initAttack(plane: any,bullets: Bullet[]) {
         }
         bullets.push(bullet)
     }
+    setInterval(()=>{
+        plane.attack()
+    },1000)
 }
 

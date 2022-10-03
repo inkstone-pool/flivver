@@ -1,5 +1,4 @@
 import { Application } from "pixi.js"
-import { P } from "vitest/dist/global-e98f203b"
 import { Bullet } from "./Bullet"
 import { EnemyPlane, initEnemyPlanes, runEnemyPlanes } from "./EnemyPlane"
 import { fighting } from "./fighting"
@@ -29,9 +28,7 @@ function mainTicker(plane:Plane,enemyPlanes:EnemyPlane[]){
         runEnemyPlanes(enemyPlanes)
         fighting(plane,enemyPlanes)
     })
-    setInterval(()=>{
-        plane.attack()
-    },500)
+
     
 }
 

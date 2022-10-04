@@ -5,6 +5,7 @@ export interface Plane{
     bullets:Bullet[]
     x:number,
     y:number,
+    speed:number
     moveDown:()=>void
     moveUp:()=>void
     moveLeft:()=>void
@@ -18,16 +19,16 @@ const defaultOptions={
     speed:5,
     HP:5,
 }
-export function setupPlane(plane: any,bullets:Bullet[]=[],options?: {x:number,y:number}):Plane{
+export function setupPlane(plane: Plane,bullets:Bullet[]=[],options?: {x:number,y:number}):Plane{
     plane.bullets=bullets
     Object.assign(plane,defaultOptions,options)
-    initAttack(plane,bullets)
-    initRun(plane, bullets)
+    initAttack(plane)
+    initRun(plane)
     initMove(plane)
     return plane
 }
 
-function initMove(plane: any) {
+function initMove(plane: Plane) {
     plane.moveDown = function () {
         plane.y += plane.speed
     }
@@ -43,23 +44,23 @@ function initMove(plane: any) {
     }
 }
 
-function initRun(plane: any, bullets: Bullet[]) {
+function initRun(plane: Plane ) {
     plane.run = function () {
-        bullets.forEach(bullet => {
+        plane.bullets.forEach(bullet => {
             bullet.move()
         })
     }
 }
-function initAttack(plane: any,bullets: Bullet[]) {
+function initAttack(plane: Plane) {
     plane.attack = function () {
-        let { x, y } = plane
-        x += 30
-        y -= 50
-        const bullet = new Bullet(x, y)
+        let { x, y } = plane  
+        const bullet = new Bullet('baseBullet')
+        bullet.x=x+40
+        bullet.y=y-50
         bullet.onDestroy=()=>{
-            bullets.splice(bullets.indexOf(bullet),1)
+            plane.bullets.splice(plane.bullets.indexOf(bullet),1)
         }
-        bullets.push(bullet)
+        plane.bullets.push(bullet)
     }
     setInterval(()=>{
         plane.attack()

@@ -14,9 +14,9 @@ export *from './Plane'
 export *from './Bullet'
 export *from './EnemyPlane'
 document.body.appendChild(game.view)
-export function initGame(_plane: any,bullets: Bullet[],enemyPlanes:EnemyPlane[]){
+export function initGame(_plane: Plane,bullets: Bullet[],enemyPlanes:EnemyPlane[]){
      const plane =setupPlane(_plane,bullets,{x:300,y:600})
-     initEnemyPlanes(enemyPlanes)
+     initEnemyPlanes(enemyPlanes,bullets)
      mainTicker(plane,enemyPlanes)
      return {
         plane,

@@ -1,12 +1,13 @@
-import { GAME_HEIGHT, GAME_WIDTH } from ".";
+import { Bullet, GAME_HEIGHT, GAME_WIDTH } from ".";
 
-enum Direction{
+export enum Direction{
     UP='UP',
     Down='Down',
     LEFT='LEFT',
     RIGHT='RIGHT',
 }
 export  class EnemyPlane{
+    public  bullets:Bullet[]=[]
     public  HP: number=3;
     public  x:number=0;
     public  y:number=0;
@@ -14,6 +15,7 @@ export  class EnemyPlane{
     public border: number =GAME_HEIGHT/3
     public directions:[Direction,Direction]=[Direction.Down,Direction.RIGHT]
     onDestroy: (() => void) | undefined;
+    attack!: (() => void);
     constructor(public width: number=69,public height: number=99){
         this.x=Math.floor(Math.random()*(GAME_WIDTH-this.width));
         this.y=Math.floor(Math.random()*this.border);
@@ -67,17 +69,35 @@ export  class EnemyPlane{
         if(!this.HP){
             this.onDestroy&&this.onDestroy()
         } 
-    }  
-    
+    } 
 }
-export function initEnemyPlanes(enemyPlanes:EnemyPlane[]){
+export function initEnemyPlanes(enemyPlanes:EnemyPlane[],bullets:Bullet[]){
     setInterval(()=>{
         const enemy=new EnemyPlane()
+        enemy.bullets=bullets
         enemy.onDestroy=()=>{
             enemyPlanes.splice(enemyPlanes.indexOf(enemy),1)
         }
+        enemy.attack=function(){
+            let { x, y } = enemy
+            const bullet = new Bullet('enemyBaseBullet')
+            bullet.x=x+enemy.width/2
+            bullet.y=y+enemy.height
+            bullet.turnupDirection()
+            bullet.onDestroy=()=>{
+                enemy.bullets.splice(enemy.bullets.indexOf(bullet),1)
+            }
+            enemy.bullets.push(bullet)
+        }
+        let timer=setInterval(()=>{
+            if(enemy.HP<=0){
+                clearInterval(timer)
+            }else{
+                enemy.attack()
+            }
+        },1500)
         enemyPlanes.push(enemy)
-    },2000)
+    },8000)
   
 
 }

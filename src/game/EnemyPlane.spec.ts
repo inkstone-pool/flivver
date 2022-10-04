@@ -11,7 +11,7 @@ describe('EnemyPlane', () => {
     });
     it('initenemyPlanes',()=>{
         const enemyPlanes: EnemyPlane[]=[]
-        initEnemyPlanes(enemyPlanes)
+        initEnemyPlanes(enemyPlanes,[])
         expect(enemyPlanes.length).toBe(1)
     })
     it('enemyPlanes move',()=>{

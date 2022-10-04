@@ -3,11 +3,13 @@ import { Bullet } from "./Bullet"
 import { EnemyPlane, initEnemyPlanes, runEnemyPlanes } from "./EnemyPlane"
 import { fighting } from "./fighting"
 import { Plane, setupPlane } from "./Plane"
-
+const GAME_WIDTH=500
+const GAME_HEIGHT=770
 export const game=new Application({
-    width:700,
-    height:700,
+    width:GAME_WIDTH,
+    height:GAME_HEIGHT,
 })
+export {GAME_HEIGHT,GAME_WIDTH}
 export *from './Plane'
 export *from './Bullet'
 export *from './EnemyPlane'

@@ -3,15 +3,19 @@
   import Plane from './components/Plane.vue'
   import Bullet from './components/Bullet.vue';
   import EnemyPlane from './components/EnemyPlane.vue'
+  import HP from './components/HP.vue'
+  import Background from './components/Background.vue';
   import { reactive } from 'vue';
   import { initGame } from './game';
   const {plane,bullets,enemyPlanes}=initGame(reactive({}),reactive([]),reactive([]))
 </script>
 <template>
   <Container>
+    <Background></Background>
     <EnemyPlane v-for="enemyPlane in enemyPlanes" :enemyPlane="enemyPlane"></EnemyPlane>
     <Plane :plane="plane" ></Plane>
     <Bullet v-for="bullet in bullets" :bullet="bullet"></Bullet>
+    <HP :HP="plane.HP"></HP>
   </Container>
 </template>
 

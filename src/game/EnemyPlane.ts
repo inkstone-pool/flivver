@@ -1,3 +1,5 @@
+import { GAME_HEIGHT, GAME_WIDTH } from ".";
+
 enum Direction{
     UP='UP',
     Down='Down',
@@ -9,12 +11,12 @@ export  class EnemyPlane{
     public  x:number=0;
     public  y:number=0;
     public  speed:number=1;
-    static border: number =200
+    public border: number =GAME_HEIGHT/3
     public directions:[Direction,Direction]=[Direction.Down,Direction.RIGHT]
     onDestroy: (() => void) | undefined;
     constructor(public width: number=69,public height: number=99){
-        this.x=Math.floor(Math.random()*(700-this.width));
-        this.y=Math.floor(Math.random()*EnemyPlane.border);
+        this.x=Math.floor(Math.random()*(GAME_WIDTH-this.width));
+        this.y=Math.floor(Math.random()*this.border);
     }
     //敌机移动逻辑
     move(){
@@ -25,7 +27,7 @@ export  class EnemyPlane{
         this.directCtrl();
     }
     private directCtrl() {
-        if (this.y > EnemyPlane.border) {
+        if (this.y > this.border) {
             let index=this.directions.indexOf(Direction.Down)
             this.directions[index] = Direction.UP
         } else if (this.y <=0) {
@@ -34,7 +36,7 @@ export  class EnemyPlane{
         } else if (this.x <=0) {
             let index=this.directions.indexOf(Direction.LEFT)
             this.directions[index] = Direction.RIGHT
-        } else if (this.x + this.width >= 700) {
+        } else if (this.x + this.width >= GAME_WIDTH) {
             let index=this.directions.indexOf(Direction.RIGHT)
             this.directions[index] = Direction.LEFT
         }

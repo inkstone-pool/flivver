@@ -1,6 +1,7 @@
 import { ReactiveEffect } from "vue"
 import {Bullet} from "./Bullet"
 export interface Plane{
+    HP:number
     bullets:Bullet[]
     x:number,
     y:number,
@@ -14,7 +15,8 @@ export interface Plane{
 const defaultOptions={
     x:300,
     y:600,
-    speed:5
+    speed:5,
+    HP:5,
 }
 export function setupPlane(plane: any,bullets:Bullet[]=[],options?: {x:number,y:number}):Plane{
     plane.bullets=bullets
@@ -61,6 +63,6 @@ function initAttack(plane: any,bullets: Bullet[]) {
     }
     setInterval(()=>{
         plane.attack()
-    },1000)
+    },500)
 }
 

@@ -7,7 +7,7 @@
   import Background from './components/Background.vue';
   import { reactive } from 'vue';
   import { initGame } from './game';
-  const {plane,bullets,enemyPlanes}=initGame(reactive({}),reactive([]),reactive([]))
+  const {plane,bullets,enemyPlanes}=initGame(reactive({}) as any,reactive([]),reactive([]))
 </script>
 <template>
   <Container>

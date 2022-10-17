@@ -5,12 +5,24 @@
   import EnemyPlane from './components/EnemyPlane.vue'
   import HP from './components/HP.vue'
   import Background from './components/Background.vue';
-  import { reactive } from 'vue';
+  import { onMounted, reactive } from 'vue';
   import { initGame } from './game';
   function onGameover(){
     console.log('onGameover')
   }
-  const {plane,bullets,enemyPlanes}=initGame(reactive({}) as any,reactive([]),reactive([]),onGameover)
+  const {plane,bullets,enemyPlanes,tickerContext}=initGame(reactive({}) as any,reactive([]),reactive([]),onGameover)
+  onMounted(() => {
+    document.addEventListener('keydown',(e)=>{
+     if(e.code==='Space'){
+      if(tickerContext.hasTicker()){
+        tickerContext.removeTicker()
+      }else{
+        tickerContext.reStartTicker()
+      }
+       
+     }
+    })
+  })
 </script>
 <template>
   <Container>

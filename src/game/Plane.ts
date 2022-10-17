@@ -27,14 +27,14 @@ let onGameOver: () => void
 export function injectGameoverFun(fn:()=>void){
   onGameOver=fn
 }
-export function setupPlane(plane: Plane,bullets:Bullet[]=[],options?: {x:number,y:number}):Plane{
+export function setupPlane(plane: Plane,bullets:Bullet[]=[],options?: {x:number,y:number}){
     plane.bullets=bullets
     Object.assign(plane,defaultOptions,options)
-    initAttack(plane)
+    const planeContext=initAttack(plane)
     initRun(plane)
     initMove(plane)
     initInjured(plane)
-    return plane
+    return planeContext
 }
 function initInjured(plane: Plane){
     plane.injured=function(damageValue=1){
@@ -78,8 +78,20 @@ function initAttack(plane: Plane) {
         }
         plane.bullets.push(bullet)
     }
-    setInterval(()=>{
-        plane.attack()
-    },500)
+    const periodicityAttack=()=>{
+       return  setInterval(()=>{
+            plane.attack()
+        },500)
+    }
+    let timer=periodicityAttack()
+    return  {
+        timer,
+        stopTrack(){
+            clearInterval(this.timer)
+        },
+        startTrack(){
+            this.timer=periodicityAttack()
+        }
+    }
 }
 

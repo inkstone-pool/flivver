@@ -72,33 +72,45 @@ export  class EnemyPlane{
     } 
 }
 export function initEnemyPlanes(enemyPlanes:EnemyPlane[],bullets:Bullet[]){
-    setInterval(()=>{
-        const enemy=new EnemyPlane()
-        enemy.bullets=bullets
-        enemy.onDestroy=()=>{
-            enemyPlanes.splice(enemyPlanes.indexOf(enemy),1)
-        }
-        enemy.attack=function(){
-            let { x, y } = enemy
-            const bullet = new Bullet('enemyBaseBullet')
-            bullet.x=x+enemy.width/2
-            bullet.y=y+enemy.height
-            bullet.turnupDirection()
-            bullet.onDestroy=()=>{
-                enemy.bullets.splice(enemy.bullets.indexOf(bullet),1)
+    const initEnemyPlane = () => {
+        const enemy = new EnemyPlane();
+        enemy.bullets = bullets;
+        enemy.onDestroy = () => {
+            enemyPlanes.splice(enemyPlanes.indexOf(enemy), 1);
+        };
+        enemy.attack = function () {
+            let { x, y } = enemy;
+            const bullet = new Bullet('enemyBaseBullet');
+            bullet.x = x + enemy.width / 2;
+            bullet.y = y + enemy.height;
+            bullet.turnupDirection();
+            bullet.onDestroy = () => {
+                enemy.bullets.splice(enemy.bullets.indexOf(bullet), 1);
+            };
+            enemy.bullets.push(bullet);
+        };
+        let timer = setInterval(() => {
+            if (enemy.HP <= 0) {
+                clearInterval(timer);
+            } else {
+                enemy.attack();
             }
-            enemy.bullets.push(bullet)
+        }, 1500);
+        enemyPlanes.push(enemy);
+    };
+    const startGenEnemy=()=>{
+        return  setInterval(initEnemyPlane,8000)
+    }
+    let timer =startGenEnemy()
+    return {
+        timer,
+        stopGenEnemy(){
+            clearInterval(this.timer)
+        },
+        startGenEnemy(){
+            this.timer=startGenEnemy()
         }
-        let timer=setInterval(()=>{
-            if(enemy.HP<=0){
-                clearInterval(timer)
-            }else{
-                enemy.attack()
-            }
-        },1500)
-        enemyPlanes.push(enemy)
-    },8000)
-  
+    }
 
 }
 export function runEnemyPlanes(enemyPlanes: EnemyPlane[]) {

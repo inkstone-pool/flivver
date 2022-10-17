@@ -15,19 +15,21 @@ export *from './Bullet'
 export *from './EnemyPlane'
 document.body.appendChild(game.view)
 export function initGame(_plane: Plane,bullets: Bullet[],enemyPlanes:EnemyPlane[],onGameover:()=>void){
-     const plane =setupPlane(_plane,bullets,{x:300,y:600})
-     initEnemyPlanes(enemyPlanes,bullets)
-     const tickerContext=mainTicker(plane,enemyPlanes)
+     const planeContext =setupPlane(_plane,bullets,{x:300,y:600})
+     const enemyPlaneContext=initEnemyPlanes(enemyPlanes,bullets)
+     const tickerContext=mainTicker(_plane,enemyPlanes,enemyPlaneContext,planeContext)
      injectGameoverFun(onGameover)
      return {
-        plane,
+        plane:_plane,
         bullets,
         enemyPlanes,
         //提供继续,暂停功能
         tickerContext,
      }
 }
-function mainTicker(plane:Plane,enemyPlanes:EnemyPlane[]){
+function mainTicker(plane:Plane,enemyPlanes:EnemyPlane[],
+    enemyPlaneContext:{timer:NodeJS.Timer,stopGenEnemy:()=>void,startGenEnemy:()=>void},
+    planeContext:{timer:NodeJS.Timer,stopTrack:()=>void,startTrack:()=>void}){
     function tickerFn(){
         plane.run()
         runEnemyPlanes(enemyPlanes)
@@ -35,11 +37,18 @@ function mainTicker(plane:Plane,enemyPlanes:EnemyPlane[]){
     }
     game.ticker.add(tickerFn)
     const context={
+        hasTicker(){
+            return  game.ticker.count>1
+        },
         removeTicker:()=>{
             game.ticker.remove(tickerFn)
+            planeContext.stopTrack()
+            enemyPlaneContext.stopGenEnemy()
         },
         reStartTicker:()=>{
             game.ticker.add(tickerFn)
+            enemyPlaneContext.startGenEnemy()
+            planeContext.startTrack()
         },
     }
     return context

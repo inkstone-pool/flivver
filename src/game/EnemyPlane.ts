@@ -66,7 +66,7 @@ export  class EnemyPlane{
     }
     injured(damageValue=1){
         this.HP-=damageValue
-        if(!this.HP){
+        if(this.HP<=0){
             this.onDestroy&&this.onDestroy()
         } 
     } 

@@ -1,4 +1,3 @@
-import { ReactiveEffect } from "vue"
 import {Bullet} from "./Bullet"
 export interface Plane{
     HP:number
@@ -6,18 +5,27 @@ export interface Plane{
     x:number,
     y:number,
     speed:number
+    width:number,
+    height:number,
     moveDown:()=>void
     moveUp:()=>void
     moveLeft:()=>void
     moveRight:()=>void
     attack:()=>void
     run:()=>void
+    injured:()=>void
 }
 const defaultOptions={
     x:300,
     y:600,
     speed:5,
     HP:5,
+    width:102,
+    height:126,
+}
+let onGameOver: () => void
+export function injectGameoverFun(fn:()=>void){
+  onGameOver=fn
 }
 export function setupPlane(plane: Plane,bullets:Bullet[]=[],options?: {x:number,y:number}):Plane{
     plane.bullets=bullets
@@ -25,9 +33,17 @@ export function setupPlane(plane: Plane,bullets:Bullet[]=[],options?: {x:number,
     initAttack(plane)
     initRun(plane)
     initMove(plane)
+    initInjured(plane)
     return plane
 }
-
+function initInjured(plane: Plane){
+    plane.injured=function(damageValue=1){
+        plane.HP-=damageValue
+        if(plane.HP<=0){
+            onGameOver&&onGameOver()
+        } 
+    }    
+}
 function initMove(plane: Plane) {
     plane.moveDown = function () {
         plane.y += plane.speed

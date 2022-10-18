@@ -22,7 +22,8 @@ export const renderer=createRenderer<Container,Container>({
                     (el as Sprite).texture=Texture.from(nextVal)
                 break;
             case "onClick":
-                el.on("pointertap", nextVal);
+                el.on("pointerdown", nextVal)
+                break;
             default:
                 (el as any)[key] = nextVal;
                 break;

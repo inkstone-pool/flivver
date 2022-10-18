@@ -28,7 +28,7 @@ export  class EnemyPlane{
         this.moveLeft()
         this.directCtrl();
     }
-    private directCtrl() {
+    public directCtrl() {
         if (this.y > this.border) {
             let index=this.directions.indexOf(Direction.Down)
             this.directions[index] = Direction.UP

@@ -2,16 +2,20 @@ lockfileVersion: 5.4
 
 specifiers:
   '@vitejs/plugin-vue': ^3.1.0
+  pinia: ^2.0.23
   pixi.js: ^6.5.4
   typescript: ^4.6.4
   vite: ^3.1.0
   vitest: ^0.23.4
   vue: ^3.2.37
+  vue-router: ^4.1.5
   vue-tsc: ^0.40.4
 
 dependencies:
+  pinia: registry.npmmirror.com/pinia/2.0.23_bfjwoga25wxjazzogo7o372nwq
   pixi.js: registry.npmmirror.com/pixi.js/6.5.4
   vue: registry.npmmirror.com/vue/3.2.40
+  vue-router: registry.npmmirror.com/vue-router/4.1.5_vue@3.2.40
 
 devDependencies:
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/3.1.0_vite@3.1.4+vue@3.2.40
@@ -755,6 +759,12 @@ packages:
       '@vue/compiler-dom': registry.npmmirror.com/@vue/compiler-dom/3.2.40
       '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.40
 
+  registry.npmmirror.com/@vue/devtools-api/6.4.4:
+    resolution: {integrity: sha512-Ku31WzpOV/8cruFaXaEZKF81WkNnvCSlBY4eOGtz5WMSdJvX1v1WWlSMGZeqUwPtQ27ZZz7B62erEMq8JDjcXw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.4.4.tgz}
+    name: '@vue/devtools-api'
+    version: 6.4.4
+    dev: false
+
   registry.npmmirror.com/@vue/reactivity-transform/3.2.40:
     resolution: {integrity: sha512-HQUCVwEaacq6fGEsg2NUuGKIhUveMCjOk8jGHqLXPI2w6zFoPrlQhwWEaINTv5kkZDXKEnCijAp+4gNEHG03yw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vue/reactivity-transform/-/reactivity-transform-3.2.40.tgz}
     name: '@vue/reactivity-transform'
@@ -1260,6 +1270,27 @@ packages:
     name: picocolors
     version: 1.0.0
 
+  registry.npmmirror.com/pinia/2.0.23_bfjwoga25wxjazzogo7o372nwq:
+    resolution: {integrity: sha512-N15hFf4o5STrxpNrib1IEb1GOArvPYf1zPvQVRGOO1G1d74Ak0J0lVyalX/SmrzdT4Q0nlEFjbURsmBmIGUR5Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia/-/pinia-2.0.23.tgz}
+    id: registry.npmmirror.com/pinia/2.0.23
+    name: pinia
+    version: 2.0.23
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.4.4
+      typescript: registry.npmmirror.com/typescript/4.8.4
+      vue: registry.npmmirror.com/vue/3.2.40
+      vue-demi: registry.npmmirror.com/vue-demi/0.13.11_vue@3.2.40
+    dev: false
+
   registry.npmmirror.com/pixi.js/6.5.4:
     resolution: {integrity: sha512-TbWqFN6M1ov8a14BxWn/odYeef4g/oVx4ODSm5CWZXIxrLg7d8wnEppeAA5u9hCnX/UNdtugKFLEXWDaOOg/gA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pixi.js/-/pixi.js-6.5.4.tgz}
     name: pixi.js
@@ -1435,7 +1466,6 @@ packages:
     version: 4.8.4
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   registry.npmmirror.com/url/0.11.0:
     resolution: {integrity: sha512-kbailJa29QrtXnxgq+DdCEGlbTeYM2eJUxsz6vjZavrCYPMIFHMKQmSKYAIuUK2i7hgPm28a8piX5NTUtM/LKQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/url/-/url-0.11.0.tgz}
@@ -1517,6 +1547,36 @@ packages:
       - supports-color
       - terser
     dev: true
+
+  registry.npmmirror.com/vue-demi/0.13.11_vue@3.2.40:
+    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.13.11.tgz}
+    id: registry.npmmirror.com/vue-demi/0.13.11
+    name: vue-demi
+    version: 0.13.11
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: registry.npmmirror.com/vue/3.2.40
+    dev: false
+
+  registry.npmmirror.com/vue-router/4.1.5_vue@3.2.40:
+    resolution: {integrity: sha512-IsvoF5D2GQ/EGTs/Th4NQms9gd2NSqV+yylxIyp/OYp8xOwxmU8Kj/74E9DTSYAyH5LX7idVUngN3JSj1X4xcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-router/-/vue-router-4.1.5.tgz}
+    id: registry.npmmirror.com/vue-router/4.1.5
+    name: vue-router
+    version: 4.1.5
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.4.4
+      vue: registry.npmmirror.com/vue/3.2.40
+    dev: false
 
   registry.npmmirror.com/vue-tsc/0.40.13_typescript@4.8.4:
     resolution: {integrity: sha512-xzuN3g5PnKfJcNrLv4+mAjteMd5wLm5fRhW0034OfNJZY4WhB07vhngea/XeGn7wNYt16r7syonzvW/54dcNiA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-tsc/-/vue-tsc-0.40.13.tgz}

@@ -10,7 +10,11 @@ import { initGame } from '../game';
 import { useGameDataStore } from '../store';
 import { router } from '../router';
 const gameDataStore=useGameDataStore()
-const {plane,bullets,enemyPlanes,tickerContext}=initGame(gameDataStore.plane,gameDataStore.bullets,gameDataStore.enemyPlanes,onGameover)
+const {plane,bullets,enemyPlanes,tickerContext}=initGame(
+  gameDataStore.plane,
+  gameDataStore.bullets,
+  gameDataStore.enemyPlanes,
+onGameover)
 //游戏结束保存下
 function onGameover(){
   gameDataStore.saveGameData(plane,bullets,enemyPlanes)
@@ -19,7 +23,7 @@ function onGameover(){
 onMounted(() => {
   document.addEventListener('keydown',(e)=>{
    if(e.code==='Space'){
-    if(tickerContext.hasTicker()){
+    if(tickerContext.started()){
       tickerContext.removeTicker()
     }else{
       tickerContext.reStartTicker()

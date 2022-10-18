@@ -2,7 +2,7 @@ import { expect,describe ,it} from "vitest";
 import { Bullet } from "./Bullet";
 import { EnemyPlane } from "./EnemyPlane";
 import { fighting } from "./fighting";
-import { setupPlane } from "./Plane";
+import { Plane, setupPlane } from "./Plane";
 
 describe('fighting', () => {
     it('enemy and bullet', () => {
@@ -12,7 +12,8 @@ describe('fighting', () => {
         bullet.width=100
         bullet.height=100
         const bullets =[bullet]
-        const plane =setupPlane({} as any,bullets)
+        let plane={}
+        setupPlane(plane as Plane,bullets)
         const enemyPlane=new EnemyPlane()
         enemyPlane.x=50
         enemyPlane.y=50
@@ -20,8 +21,8 @@ describe('fighting', () => {
         enemyPlane.height=100
         const enemyPlanes=[enemyPlane]
 
-        fighting(plane,enemyPlanes)
-        expect(plane.bullets.length).toBe(0)
+        fighting(plane as Plane,enemyPlanes)
+        expect((plane as Plane).bullets.length).toBe(0)
         expect(enemyPlanes.length).toBe(0)
     });
 });

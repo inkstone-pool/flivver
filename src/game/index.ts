@@ -35,21 +35,24 @@ function mainTicker(plane:Plane,enemyPlanes:EnemyPlane[],
         runEnemyPlanes(enemyPlanes)
         fighting(plane,enemyPlanes)
     }
-    game.ticker.add(tickerFn)
     const context={
-        hasTicker(){
-            return  game.ticker.count>1
+        started(){
+            return  game.ticker.started
         },
         removeTicker:()=>{
-            game.ticker.remove(tickerFn)
+            game.ticker.stop()
             planeContext.stopTrack()
             enemyPlaneContext.stopGenEnemy()
         },
         reStartTicker:()=>{
-            game.ticker.add(tickerFn)
+            game.ticker.start()
             enemyPlaneContext.startGenEnemy()
             planeContext.startTrack()
-        },
+        },   
+    }
+
+    if(game.ticker.count===1){
+        game.ticker.add(tickerFn)
     }
     return context
 }

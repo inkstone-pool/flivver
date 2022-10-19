@@ -3,8 +3,8 @@ import { Bullet } from "./Bullet"
 import { EnemyPlane, initEnemyPlanes, runEnemyPlanes } from "./EnemyPlane"
 import { fighting } from "./fighting"
 import { Plane, setupPlane ,injectGameoverFun} from "./Plane"
-const GAME_WIDTH=500
-const GAME_HEIGHT=770
+const GAME_WIDTH=600
+const GAME_HEIGHT=window.innerHeight
 export const game=new Application({
     width:GAME_WIDTH,
     height:GAME_HEIGHT,

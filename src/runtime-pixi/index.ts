@@ -24,6 +24,9 @@ export const renderer=createRenderer<Container,Container>({
             case "onClick":
                 el.on("pointerdown", nextVal)
                 break;
+            case "anchor":
+                (el as Sprite).anchor.set(nextVal,nextVal)
+                break;
             default:
                 (el as any)[key] = nextVal;
                 break;

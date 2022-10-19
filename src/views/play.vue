@@ -4,8 +4,7 @@ import Plane from '../components/Plane.vue'
 import Bullet from '../components/Bullet.vue';
 import EnemyPlane from '../components/EnemyPlane.vue'
 import HP from '../components/HP.vue'
-import Background from '../components/Background.vue';
-import { onMounted, reactive } from 'vue';
+import { onMounted } from 'vue';
 import { initGame } from '../game';
 import { useGameDataStore } from '../store';
 import { router } from '../router';
@@ -34,7 +33,6 @@ onMounted(() => {
 </script>
 <template>
 <Container>
-  <Background></Background>
   <EnemyPlane v-for="enemyPlane in enemyPlanes" :enemyPlane="enemyPlane"></EnemyPlane>
   <Plane :plane="plane" ></Plane>
   <Bullet v-for="bullet in bullets" :bullet="bullet"></Bullet>

@@ -1,5 +1,5 @@
 <template>
-    <Container :x="enemyPlane.x" :y="enemyPlane.y"><Sprite :texture="enemyImg" ></Sprite></Container>
+    <Container :x="enemyPlane.x" :y="enemyPlane.y" ><Sprite :texture="enemyImg" anchor="0.5"></Sprite></Container>
   </template>
   
   <script setup lang="ts">

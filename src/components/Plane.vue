@@ -1,6 +1,6 @@
 <template>
     <Container :x="plane.x" :y="plane.y">
-      <Sprite :texture="bulletImg" >
+      <Sprite :texture="bulletImg" anchor="0.5" >
       </Sprite>
     </Container>
   </template>
@@ -14,7 +14,6 @@ const {plane}=defineProps({
   plane:{
     type:Object as PropType<Plane>,
     required:true
-
   }
 })
 const listenFn=(e: { code: string; })=>{

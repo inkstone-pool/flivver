@@ -4,6 +4,7 @@ import Plane from '../components/Plane.vue'
 import Bullet from '../components/Bullet.vue';
 import EnemyPlane from '../components/EnemyPlane.vue'
 import HP from '../components/HP.vue'
+import Shiled from '../components/Shield.vue'
 import { onMounted, onUnmounted } from 'vue';
 import { initGame } from '../game';
 import { useGameDataStore } from '../store';
@@ -45,6 +46,7 @@ onMounted(() => {
 <Container>
   <EnemyPlane v-for="enemyPlane in enemyPlanes" :enemyPlane="enemyPlane"></EnemyPlane>
   <Plane :plane="plane" ></Plane>
+  <Shiled :shiledHP="5" :position="{x:plane.x,y:plane.y}" ></Shiled>
   <Bullet v-for="bullet in bullets" :bullet="bullet"></Bullet>
   <HP :HP="plane.HP"></HP>
 </Container>

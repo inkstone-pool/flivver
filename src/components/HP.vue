@@ -12,7 +12,6 @@ const {HP}=defineProps({
   HP:{
     type: Number,
     required:true
-
   }
 })
   </script>

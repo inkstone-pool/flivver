@@ -1,5 +1,5 @@
 <template>
-  <Container :x="bullet.x" :y="bullet.y"><Sprite :texture="bullet.bulletImg" ></Sprite></Container>
+  <Container :x="bullet.x" :y="bullet.y"><Sprite :texture="bullet.bulletImg" anchor="0.5"></Sprite></Container>
 </template>
 
 <script setup lang="ts">

@@ -71,8 +71,8 @@ function initAttack(plane: Plane) {
     plane.attack = function () {
         let { x, y } = plane  
         const bullet = new Bullet('baseBullet')
-        bullet.x=x+40
-        bullet.y=y-50
+        bullet.x=x
+        bullet.y=y-126
         bullet.onDestroy=()=>{
             plane.bullets.splice(plane.bullets.indexOf(bullet),1)
         }

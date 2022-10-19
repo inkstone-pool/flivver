@@ -81,7 +81,7 @@ export function initEnemyPlanes(enemyPlanes:EnemyPlane[],bullets:Bullet[]){
         enemy.attack = function () {
             let { x, y } = enemy;
             const bullet = new Bullet('enemyBaseBullet');
-            bullet.x = x + enemy.width / 2;
+            bullet.x = x;
             bullet.y = y + enemy.height;
             bullet.turnupDirection();
             bullet.onDestroy = () => {

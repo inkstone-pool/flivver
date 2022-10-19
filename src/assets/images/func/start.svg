@@ -6,7 +6,7 @@
             <g id="编组" transform="translate(92.000000, 546.000000)">
                 <rect id="矩形" stroke-width="4" fill="#FFC859" x="2" y="2" width="187" height="62" rx="12"></rect>
                 <text id="开始游戏" stroke-width="1.5" font-family="ZhenyanGB-Regular, ZhenyanGB" font-size="36" font-weight="normal" letter-spacing="2" fill="#FFFFFF">
-                    <tspan x="20" y="45">开始游戏</tspan>
+                    <tspan x="20" y="45">原地复活</tspan>
                 </text>
             </g>
         </g>

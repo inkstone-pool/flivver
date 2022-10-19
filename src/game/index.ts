@@ -37,23 +37,20 @@ function mainTicker(plane:Plane,enemyPlanes:EnemyPlane[],
     }
     const context={
         started(){
-            return  game.ticker.started
+            return  game.ticker.count>1
         },
         removeTicker:()=>{
-            game.ticker.stop()
+            game.ticker.remove(tickerFn)
             planeContext.stopTrack()
             enemyPlaneContext.stopGenEnemy()
         },
         reStartTicker:()=>{
-            game.ticker.start()
+            game.ticker.add(tickerFn)
             enemyPlaneContext.startGenEnemy()
             planeContext.startTrack()
-        },   
+        }, 
     }
-
-    if(game.ticker.count===1){
-        game.ticker.add(tickerFn)
-    }
+    game.ticker.add(tickerFn)
     return context
 }
 

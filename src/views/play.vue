@@ -4,7 +4,7 @@ import Plane from '../components/Plane.vue'
 import Bullet from '../components/Bullet.vue';
 import EnemyPlane from '../components/EnemyPlane.vue'
 import HP from '../components/HP.vue'
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import { initGame } from '../game';
 import { useGameDataStore } from '../store';
 import { router } from '../router';
@@ -16,19 +16,29 @@ const {plane,bullets,enemyPlanes,tickerContext}=initGame(
 onGameover)
 //游戏结束保存下
 function onGameover(){
+  console.log('onGameover',plane)
   gameDataStore.saveGameData(plane,bullets,enemyPlanes)
   router.go(-1)
+  setTimeout(()=>{
+    tickerContext.removeTicker()
+  },50)
 }
-onMounted(() => {
-  document.addEventListener('keydown',(e)=>{
+function keydownFn(e: { code: string; }){
    if(e.code==='Space'){
+    console.log(tickerContext.started());
+    
     if(tickerContext.started()){
       tickerContext.removeTicker()
     }else{
       tickerContext.reStartTicker()
     }
    }
-  })
+}
+onUnmounted(() =>{
+  document.removeEventListener('keydown',keydownFn)
+}),
+onMounted(() => {
+  document.addEventListener('keydown',keydownFn)
 })
 </script>
 <template>

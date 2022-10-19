@@ -14,8 +14,8 @@ const gameDataStore=useGameDataStore()
 const {plane,bullets,enemyPlanes,bufferGears,tickerContext}=initGame(
   gameDataStore.plane,
   gameDataStore.bullets,
-  gameDataStore.bufferGears,
   gameDataStore.enemyPlanes,
+  gameDataStore.bufferGears,
 onGameover)
 //游戏结束保存下
 function onGameover(){
@@ -26,8 +26,6 @@ function onGameover(){
     tickerContext.removeTicker()
   },50)
 }
-const bufferGear= new BufferGear('filed')
-console.log(bufferGear)
 function keydownFn(e: { code: string; }){
    if(e.code==='Space'){
     console.log(tickerContext.started());
@@ -50,8 +48,8 @@ onMounted(() => {
 <Container>
   <EnemyPlane v-for="enemyPlane in enemyPlanes" :enemyPlane="enemyPlane"></EnemyPlane>
   <Plane :plane="plane" ></Plane>
-  <BufferGear :buffer-gear="bufferGear"></BufferGear>
-  <Shiled v-if="plane.shiledHP>=0" :position="{x:plane.x,y:plane.y}" ></Shiled>
+  <BufferGear  v-for="bufferGear in bufferGears" :buffer-gear="bufferGear"></BufferGear>
+  <Shiled v-if="plane.shiledHP>0" :position="{x:plane.x,y:plane.y}" ></Shiled>
   <Bullet v-for="bullet in bullets" :bullet="bullet"></Bullet>
   <HP :HP="plane.HP"></HP>
 </Container>

@@ -1,6 +1,6 @@
 <template>
     <Container :x="bufferGear.x" :y="bufferGear.y" >
-      <Sprite :texture="bufferGear.bufferIcon" anchor="0.5">
+      <Sprite :texture="bufferGear.bufferIcon" anchor="0.5" width="60" height="60">
       </Sprite>
     </Container>
   </template>

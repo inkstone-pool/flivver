@@ -1,5 +1,4 @@
-import { Bullet, GAME_HEIGHT, GAME_WIDTH } from ".";
-import { BufferGear } from "./BufferGear";
+import { Bullet,BufferGear, GAME_HEIGHT, GAME_WIDTH } from ".";
 
 export enum Direction{
     UP='UP',
@@ -79,16 +78,21 @@ export function initEnemyPlanes(enemyPlanes:EnemyPlane[],bullets:Bullet[],buffer
         enemy.onDestroy = () => {
             enemyPlanes.splice(enemyPlanes.indexOf(enemy), 1);
             //死亡掉落随机buff
-            if(Math.random()>0.5){
+            // if(Math.random()>0.8){
                 let { x, y } = enemy;
-                let bufferGear=new BufferGear('filed')
+                const bufferGear=new BufferGear('filed')
                 bufferGear.onDestroy=()=>{
                     bufferGears.splice(bufferGears.indexOf(bufferGear), 1);
                 }
                 bufferGear.x = x;
                 bufferGear.y = y;
                 bufferGears.push(bufferGear)
-            }
+                //存活4秒
+                let timer =setTimeout(() => {
+                    clearTimeout(timer)
+                    bufferGear.onDestroy&&bufferGear.onDestroy()
+                }, 4000);
+            // }
         };
         enemy.attack = function () {
             let { x, y } = enemy;

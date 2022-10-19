@@ -9,21 +9,25 @@ import { onMounted, onUnmounted } from 'vue';
 import { initGame } from '../game';
 import { useGameDataStore } from '../store';
 import { router } from '../router';
+import BufferGear from '../components/BufferGear.vue';
 const gameDataStore=useGameDataStore()
-const {plane,bullets,enemyPlanes,tickerContext}=initGame(
+const {plane,bullets,enemyPlanes,bufferGears,tickerContext}=initGame(
   gameDataStore.plane,
   gameDataStore.bullets,
+  gameDataStore.bufferGears,
   gameDataStore.enemyPlanes,
 onGameover)
 //游戏结束保存下
 function onGameover(){
   console.log('onGameover',plane)
-  gameDataStore.saveGameData(plane,bullets,enemyPlanes)
+  gameDataStore.saveGameData(plane,bullets,enemyPlanes,bufferGears)
   router.go(-1)
   setTimeout(()=>{
     tickerContext.removeTicker()
   },50)
 }
+const bufferGear= new BufferGear('filed')
+console.log(bufferGear)
 function keydownFn(e: { code: string; }){
    if(e.code==='Space'){
     console.log(tickerContext.started());
@@ -46,7 +50,8 @@ onMounted(() => {
 <Container>
   <EnemyPlane v-for="enemyPlane in enemyPlanes" :enemyPlane="enemyPlane"></EnemyPlane>
   <Plane :plane="plane" ></Plane>
-  <Shiled :shiledHP="5" :position="{x:plane.x,y:plane.y}" ></Shiled>
+  <BufferGear :buffer-gear="bufferGear"></BufferGear>
+  <Shiled v-if="plane.shiledHP>=0" :position="{x:plane.x,y:plane.y}" ></Shiled>
   <Bullet v-for="bullet in bullets" :bullet="bullet"></Bullet>
   <HP :HP="plane.HP"></HP>
 </Container>

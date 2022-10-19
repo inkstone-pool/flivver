@@ -7,6 +7,7 @@ export interface Plane{
     speed:number
     width:number,
     height:number,
+    shiledHP:number
     moveDown:()=>void
     moveUp:()=>void
     moveLeft:()=>void
@@ -22,6 +23,7 @@ const defaultOptions={
     HP:5,
     width:102,
     height:126,
+    shiledHP:0
 }
 let onGameOver: () => void
 export function injectGameoverFun(fn:()=>void){
@@ -38,7 +40,11 @@ export function setupPlane(plane: Plane,bullets:Bullet[]=[],options?: {x:number,
 }
 function initInjured(plane: Plane){
     plane.injured=function(damageValue=1){
-        plane.HP-=damageValue
+        if(plane.shiledHP>0){
+            plane.shiledHP-=damageValue
+        }else{
+            plane.HP-=damageValue
+        }
         if(plane.HP<=0){
             onGameOver&&onGameOver()
         } 

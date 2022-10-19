@@ -9,7 +9,6 @@ const {bullet}=defineProps({
   bullet:{
     type:Object as PropType<Bullet>,
     required:true
-
   }
 })
 </script>

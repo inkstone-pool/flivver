@@ -1,7 +1,6 @@
 import { isReactCollision } from "./Collision";
 import { EnemyPlane } from "./EnemyPlane";
 import { Plane } from "./Plane";
-
 export function fighting(plane:Plane,enemyPlanes:EnemyPlane[]){
     //我方战机子弹与敌方碰撞
     plane.bullets.forEach((bullet,index)=>{
@@ -21,5 +20,6 @@ export function fighting(plane:Plane,enemyPlanes:EnemyPlane[]){
             }
         })
     })
+    
  
 }

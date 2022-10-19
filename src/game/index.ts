@@ -1,4 +1,5 @@
 import { Application } from "pixi.js"
+import { BufferGear } from "./BufferGear"
 import { Bullet } from "./Bullet"
 import { EnemyPlane, initEnemyPlanes, runEnemyPlanes } from "./EnemyPlane"
 import { fighting } from "./fighting"
@@ -14,15 +15,18 @@ export *from './Plane'
 export *from './Bullet'
 export *from './EnemyPlane'
 document.body.appendChild(game.view)
-export function initGame(_plane: Plane,bullets: Bullet[],enemyPlanes:EnemyPlane[],onGameover:()=>void){
+export function initGame(_plane: Plane,bullets: Bullet[],
+    enemyPlanes:EnemyPlane[],
+     bufferGears:BufferGear[],onGameover:()=>void){
      const planeContext =setupPlane(_plane,bullets,{x:300,y:600})
-     const enemyPlaneContext=initEnemyPlanes(enemyPlanes,bullets)
+     const enemyPlaneContext=initEnemyPlanes(enemyPlanes,bullets,bufferGears)
      const tickerContext=mainTicker(_plane,enemyPlanes,enemyPlaneContext,planeContext)
      injectGameoverFun(onGameover)
      return {
         plane:_plane,
         bullets,
         enemyPlanes,
+        bufferGears,
         //提供继续,暂停功能
         tickerContext,
      }

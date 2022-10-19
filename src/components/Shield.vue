@@ -8,11 +8,7 @@
 <script setup lang="ts">
 import shiledImg from '../assets/images/Bonus_Items/shiled.png'
 
-const {shiledHP,position}=defineProps({
-  shiledHP:{
-    type: Number,
-    required:true
-  },
+defineProps({
   position:{
     type: Object,
     required:true
